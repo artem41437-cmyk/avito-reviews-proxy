@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avito Reviews Demo</title>
+</head>
+<body style="margin:20px; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,Arial,sans-serif;">
+  <h1>Демо: виджет отзывов Авито</h1>
+  <p>Ниже — виджет, который тянет отзывы с Avito через вашу serverless-функцию.</p>
+
+  <div id="avito-reviews-widget"
+       data-endpoint="/api/reviews"
+       data-limit="6"></div>
+
+  <script src="/public/widget.js" defer></script>
+</body>
+</html>
