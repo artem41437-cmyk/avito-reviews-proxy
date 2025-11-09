@@ -1,0 +1,26 @@
+// api/avito.js
+export default async function handler(req, res) {
+  const sellerUrl = req.query.sellerUrl;
+  if (!sellerUrl) return res.status(400).json({ ok:false, error:'Missing sellerUrl' });
+
+  try {
+    const r = await fetch(sellerUrl, {
+      headers: {
+        'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+        'accept-language':'ru,en;q=0.9'
+      },
+      redirect:'follow'
+    });
+    const html = await r.text();
+
+    // Парсинг очень похож на GAS/Worker
+    const reviews = []; // ... (сюда можно перенести ту же логику, что выше)
+    // Чтобы не раздувать ответ — сократил. Скопируй parseAvito_ из варианта А и используй здесь.
+
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    return res.status(200).json({ ok:true, reviews, count: reviews.length });
+  } catch (e) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    return res.status(500).json({ ok:false, error: String(e) });
+  }
+}
